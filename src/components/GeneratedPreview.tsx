@@ -74,8 +74,8 @@ export function GeneratedPreview({ blueprint, theme, visualStyle }: GeneratedPre
 
       <div className="preview-hero">
         <div className="preview-copy">
-          <span className="kicker">conceito ativo</span>
-          <h2>{blueprint.headline}</h2>
+          <span className="kicker">direcao visual</span>
+          <h2>{theme.previewName}</h2>
           <p>{blueprint.visualDirection}</p>
         </div>
       </div>
