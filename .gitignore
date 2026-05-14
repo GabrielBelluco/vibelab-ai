@@ -2,6 +2,7 @@ node_modules
 dist
 .repo
 .git.locked
+*.tsbuildinfo
 .env
 .env.local
 .DS_Store

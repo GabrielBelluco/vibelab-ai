@@ -320,6 +320,33 @@ textarea:focus {
     radial-gradient(circle at 50% 42%, rgba(39, 245, 212, 0.18), transparent 28%);
 }
 
+.stage-premium {
+  background:
+    linear-gradient(145deg, rgba(215, 255, 79, 0.16), rgba(255, 107, 74, 0.06)),
+    radial-gradient(circle at 50% 36%, rgba(242, 238, 232, 0.18), transparent 34%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.stage-cyber {
+  background:
+    linear-gradient(145deg, rgba(255, 79, 216, 0.18), transparent 30%),
+    radial-gradient(circle at 52% 38%, rgba(39, 245, 212, 0.26), transparent 32%),
+    rgba(255, 255, 255, 0.03);
+}
+
+.stage-minimal {
+  background:
+    linear-gradient(160deg, rgba(247, 244, 238, 0.09), rgba(47, 128, 237, 0.08)),
+    rgba(255, 255, 255, 0.03);
+}
+
+.stage-playful {
+  background:
+    linear-gradient(145deg, rgba(255, 230, 109, 0.18), rgba(78, 205, 196, 0.12)),
+    radial-gradient(circle at 54% 40%, rgba(255, 107, 107, 0.22), transparent 30%),
+    rgba(255, 255, 255, 0.03);
+}
+
 .stage-grid {
   position: absolute;
   inset: 0;
@@ -334,6 +361,71 @@ textarea:focus {
   position: relative;
   width: min(76%, 410px);
   aspect-ratio: 0.88;
+  --accent: var(--lime);
+  --accent-two: var(--cyan);
+  --body-a: rgba(39, 245, 212, 0.72);
+  --body-b: rgba(215, 255, 79, 0.82);
+  --cheek-tone: rgba(255, 107, 74, 0.5);
+  --core-bg: #f8f4ec;
+  --creature-head: #f8f4ec;
+  --eye-tone: #0c0c0d;
+  --glow: rgba(215, 255, 79, 0.8);
+  --head-glow: rgba(255, 107, 74, 0.3);
+  --outline: #0c0c0d;
+  --mouth-tone: #0c0c0d;
+}
+
+.creature-theme-premium {
+  --accent: #d7ff4f;
+  --accent-two: #ff6b4a;
+  --body-a: #101010;
+  --body-b: #d7ff4f;
+  --cheek-tone: rgba(255, 107, 74, 0.35);
+  --core-bg: #f2eee8;
+  --creature-head: #f2eee8;
+  --eye-tone: #0c0c0d;
+  --glow: rgba(215, 255, 79, 0.78);
+  --head-glow: rgba(215, 255, 79, 0.2);
+}
+
+.creature-theme-cyber {
+  --accent: #27f5d4;
+  --accent-two: #ff4fd8;
+  --body-a: #15162a;
+  --body-b: #27f5d4;
+  --cheek-tone: rgba(255, 79, 216, 0.42);
+  --core-bg: #090a12;
+  --creature-head: #17182a;
+  --eye-tone: #27f5d4;
+  --glow: rgba(39, 245, 212, 0.92);
+  --head-glow: rgba(255, 79, 216, 0.18);
+  --mouth-tone: #27f5d4;
+}
+
+.creature-theme-minimal {
+  --accent: #2f80ed;
+  --accent-two: #f2994a;
+  --body-a: #f7f4ee;
+  --body-b: #cfd4dc;
+  --cheek-tone: rgba(47, 128, 237, 0.18);
+  --core-bg: #111111;
+  --creature-head: #f7f4ee;
+  --eye-tone: #111111;
+  --glow: rgba(47, 128, 237, 0.55);
+  --head-glow: rgba(47, 128, 237, 0.1);
+}
+
+.creature-theme-playful {
+  --accent: #ffe66d;
+  --accent-two: #ff6b6b;
+  --body-a: #4ecdc4;
+  --body-b: #ffe66d;
+  --cheek-tone: rgba(255, 107, 107, 0.58);
+  --core-bg: #fff8d8;
+  --creature-head: #fff8d8;
+  --eye-tone: #151515;
+  --glow: rgba(255, 230, 109, 0.86);
+  --head-glow: rgba(78, 205, 196, 0.22);
 }
 
 .antenna {
@@ -344,7 +436,7 @@ textarea:focus {
   height: 72px;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: #f8f4ec;
+  background: var(--core-bg);
 }
 
 .antenna span {
@@ -354,10 +446,10 @@ textarea:focus {
   width: 34px;
   height: 34px;
   transform: translateX(-50%);
-  border: 6px solid #0c0c0d;
+  border: 6px solid var(--outline);
   border-radius: 999px;
-  background: var(--lime);
-  box-shadow: 0 0 36px rgba(215, 255, 79, 0.8);
+  background: var(--accent);
+  box-shadow: 0 0 36px var(--glow);
 }
 
 .creature-head {
@@ -367,14 +459,22 @@ textarea:focus {
   width: 74%;
   aspect-ratio: 1.08;
   transform: translateX(-50%);
-  border: 5px solid #0c0c0d;
+  border: 5px solid var(--outline);
   border-radius: 42% 42% 34% 34%;
   background:
-    radial-gradient(circle at 50% 115%, rgba(255, 107, 74, 0.3), transparent 32%),
-    #f8f4ec;
+    radial-gradient(circle at 50% 115%, var(--head-glow), transparent 32%),
+    var(--creature-head);
   box-shadow:
     inset 0 -20px 0 rgba(0, 0, 0, 0.08),
     0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.head-accessory,
+.mask-band,
+.theme-prop,
+.body-mark {
+  position: absolute;
+  display: none;
 }
 
 .eye {
@@ -383,8 +483,9 @@ textarea:focus {
   width: 30px;
   height: 42px;
   border-radius: 999px;
-  background: #0c0c0d;
+  background: var(--eye-tone);
   transition: transform 100ms linear;
+  z-index: 2;
 }
 
 .eye-left {
@@ -402,8 +503,9 @@ textarea:focus {
   width: 54px;
   height: 18px;
   transform: translateX(-50%);
-  border-bottom: 5px solid #0c0c0d;
+  border-bottom: 5px solid var(--mouth-tone);
   border-radius: 0 0 999px 999px;
+  z-index: 2;
 }
 
 .cheek {
@@ -412,7 +514,8 @@ textarea:focus {
   width: 34px;
   height: 18px;
   border-radius: 999px;
-  background: rgba(255, 107, 74, 0.5);
+  background: var(--cheek-tone);
+  z-index: 2;
 }
 
 .cheek-left {
@@ -429,10 +532,10 @@ textarea:focus {
   bottom: 8%;
   left: 10%;
   height: 44%;
-  border: 5px solid #0c0c0d;
+  border: 5px solid var(--outline);
   border-radius: 44% 44% 28% 28%;
   background:
-    linear-gradient(135deg, rgba(39, 245, 212, 0.72), rgba(215, 255, 79, 0.82)),
+    linear-gradient(135deg, var(--body-a), var(--body-b)),
     #2bffce;
   box-shadow: inset 0 -28px 0 rgba(0, 0, 0, 0.1);
 }
@@ -446,10 +549,217 @@ textarea:focus {
   width: 96px;
   height: 96px;
   transform: translate(-50%, -50%);
-  border: 5px solid #0c0c0d;
+  border: 5px solid var(--outline);
   border-radius: 999px;
-  background: #f8f4ec;
-  color: #0c0c0d;
+  background: var(--core-bg);
+  color: var(--eye-tone);
+  z-index: 3;
+}
+
+.creature-theme-premium .accessory-left {
+  display: block;
+  top: -13%;
+  left: 30%;
+  width: 40%;
+  height: 24%;
+  border: 5px solid var(--outline);
+  background: linear-gradient(135deg, var(--accent), var(--accent-two));
+  clip-path: polygon(0 100%, 12% 35%, 34% 68%, 50% 0, 66% 68%, 88% 35%, 100% 100%);
+}
+
+.creature-theme-premium .body-mark {
+  display: block;
+  right: 19%;
+  bottom: 22%;
+  width: 34px;
+  height: 34px;
+  transform: rotate(45deg);
+  border: 4px solid var(--outline);
+  background: var(--accent);
+}
+
+.creature-theme-premium .core {
+  box-shadow: inset 0 0 0 10px rgba(215, 255, 79, 0.28);
+}
+
+.creature-theme-cyber .antenna {
+  top: 7%;
+  height: 44px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.creature-theme-cyber .creature-head {
+  border-radius: 28% 42% 34% 34%;
+  box-shadow:
+    inset 0 -20px 0 rgba(39, 245, 212, 0.09),
+    0 0 42px rgba(39, 245, 212, 0.22),
+    0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.creature-theme-cyber .mask-band {
+  display: block;
+  top: 31%;
+  left: -4%;
+  width: 108%;
+  height: 30%;
+  border-top: 4px solid var(--accent);
+  border-bottom: 4px solid var(--accent-two);
+  background: #090a12;
+  transform: skewY(-4deg);
+  z-index: 1;
+}
+
+.creature-theme-cyber .eye {
+  width: 42px;
+  height: 12px;
+  border-radius: 999px;
+  box-shadow: 0 0 20px var(--glow);
+}
+
+.creature-theme-cyber .accessory-right {
+  display: block;
+  top: 24%;
+  right: -20%;
+  width: 42%;
+  height: 18px;
+  border: 4px solid var(--outline);
+  background: linear-gradient(90deg, var(--accent), var(--accent-two));
+  transform: rotate(18deg);
+}
+
+.creature-theme-cyber .prop-left,
+.creature-theme-cyber .prop-right {
+  display: block;
+  top: 50%;
+  width: 86px;
+  height: 14px;
+  border: 4px solid var(--outline);
+  background: var(--accent);
+  box-shadow: 0 0 18px var(--glow);
+}
+
+.creature-theme-cyber .prop-left {
+  left: -44px;
+  transform: rotate(38deg);
+}
+
+.creature-theme-cyber .prop-right {
+  right: -44px;
+  transform: rotate(-38deg);
+}
+
+.creature-theme-minimal .antenna {
+  height: 42px;
+  width: 4px;
+}
+
+.creature-theme-minimal .antenna span {
+  width: 22px;
+  height: 22px;
+  border-width: 4px;
+}
+
+.creature-theme-minimal .creature-head {
+  border-radius: 8px;
+  box-shadow:
+    inset 0 -14px 0 rgba(0, 0, 0, 0.04),
+    0 24px 70px rgba(0, 0, 0, 0.26);
+}
+
+.creature-theme-minimal .eye {
+  width: 24px;
+  height: 24px;
+}
+
+.creature-theme-minimal .cheek {
+  display: none;
+}
+
+.creature-theme-minimal .mouth {
+  width: 44px;
+  height: 8px;
+  border-bottom-width: 4px;
+}
+
+.creature-theme-minimal .creature-body {
+  border-radius: 8px;
+}
+
+.creature-theme-minimal .core {
+  color: #f7f4ee;
+  width: 82px;
+  height: 82px;
+}
+
+.creature-theme-minimal .body-mark {
+  display: block;
+  right: 20%;
+  bottom: 22%;
+  width: 28px;
+  height: 28px;
+  border: 4px solid var(--outline);
+  border-radius: 8px;
+  background: var(--accent);
+}
+
+.creature-theme-playful .antenna {
+  top: 5%;
+  height: 58px;
+}
+
+.creature-theme-playful .creature-head {
+  border-radius: 48% 48% 38% 38%;
+}
+
+.creature-theme-playful .accessory-left,
+.creature-theme-playful .accessory-right {
+  display: block;
+  top: 0;
+  width: 30%;
+  height: 32%;
+  border: 5px solid var(--outline);
+  border-radius: 999px 999px 12px 999px;
+  background: var(--accent);
+  z-index: -1;
+}
+
+.creature-theme-playful .accessory-left {
+  left: -7%;
+  transform: rotate(-28deg);
+}
+
+.creature-theme-playful .accessory-right {
+  right: -7%;
+  transform: rotate(28deg) scaleX(-1);
+}
+
+.creature-theme-playful .eye {
+  width: 34px;
+  height: 46px;
+}
+
+.creature-theme-playful .mouth {
+  width: 64px;
+  height: 26px;
+}
+
+.creature-theme-playful .prop-left,
+.creature-theme-playful .prop-right {
+  display: block;
+  top: 52%;
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--outline);
+  border-radius: 999px;
+  background: var(--accent-two);
+}
+
+.creature-theme-playful .prop-left {
+  left: -18px;
+}
+
+.creature-theme-playful .prop-right {
+  right: -18px;
 }
 
 .creature-shadow {
@@ -464,8 +774,8 @@ textarea:focus {
 }
 
 .creature-typing .antenna span {
-  background: var(--cyan);
-  box-shadow: 0 0 36px rgba(39, 245, 212, 0.9);
+  background: var(--accent-two);
+  box-shadow: 0 0 36px var(--glow);
 }
 
 .creature-thinking .creature-head {
@@ -473,8 +783,8 @@ textarea:focus {
 }
 
 .creature-success .antenna span {
-  background: var(--coral);
-  box-shadow: 0 0 36px rgba(255, 107, 74, 0.9);
+  background: var(--accent);
+  box-shadow: 0 0 36px var(--glow);
 }
 
 @keyframes pulse-head {
@@ -497,6 +807,15 @@ textarea:focus {
   border-radius: 999px;
   background: rgba(12, 12, 13, 0.72);
   color: #ffffff;
+}
+
+.signal-panel strong {
+  color: #ffffff;
+}
+
+.signal-panel span:not(.signal-dot) {
+  color: rgba(248, 244, 236, 0.68);
+  font-size: 0.86rem;
 }
 
 .signal-dot {

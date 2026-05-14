@@ -104,7 +104,7 @@ function App() {
           </button>
         </motion.div>
 
-        <CreatureStage mood={mood} pointer={pointer} />
+        <CreatureStage mood={mood} pointer={pointer} style={style} />
       </section>
 
       <GeneratedPreview blueprint={blueprint} />
