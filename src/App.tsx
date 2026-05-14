@@ -1,24 +1,20 @@
 import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { RefreshCw, Send, Sparkles, WandSparkles } from 'lucide-react';
+import { AnimatedBackdrop } from './components/AnimatedBackdrop';
 import { CreatureStage } from './components/CreatureStage';
 import { GeneratedPreview } from './components/GeneratedPreview';
 import { generateBlueprint } from './lib/generateBlueprint';
+import { styleOptions, themeProfiles } from './lib/themes';
 import type { Mood, VisualStyle } from './types';
 
-const styles: Array<{ id: VisualStyle; label: string }> = [
-  { id: 'premium', label: 'Premium' },
-  { id: 'cyber', label: 'Cyber' },
-  { id: 'minimal', label: 'Minimal' },
-  { id: 'playful', label: 'Playful' },
-];
-
 function App() {
-  const [prompt, setPrompt] = useState('Landing page para uma cafeteria futurista em Sao Paulo');
+  const [prompt, setPrompt] = useState(themeProfiles.cyber.prompt);
   const [style, setStyle] = useState<VisualStyle>('cyber');
   const [mood, setMood] = useState<Mood>('idle');
   const [pointer, setPointer] = useState({ x: 0, y: 0 });
   const [generation, setGeneration] = useState(0);
+  const theme = themeProfiles[style];
 
   const blueprint = useMemo(
     () => generateBlueprint(prompt, style, generation),
@@ -38,15 +34,21 @@ function App() {
     }, 850);
   }
 
+  function handleStyleChange(nextStyle: VisualStyle) {
+    setStyle(nextStyle);
+    setMood('success');
+  }
+
   return (
     <main
-      className="app-shell"
+      className={`app-shell theme-${style}`}
       onPointerMove={(event) => {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
         setPointer({ x: event.clientX - centerX, y: event.clientY - centerY });
       }}
     >
+      <AnimatedBackdrop style={style} />
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
@@ -58,7 +60,7 @@ function App() {
           <span>VibeLab AI</span>
         </a>
         <div className="topbar-actions">
-          <span className="status-pill">Prototype 0.1</span>
+          <span className="status-pill">{theme.cue}</span>
           <button className="icon-button" aria-label="Regenerar" onClick={handleGenerate}>
             <RefreshCw size={19} />
           </button>
@@ -76,7 +78,8 @@ function App() {
             <WandSparkles size={18} />
             <span>Prompt visual</span>
           </div>
-          <h1>Crie uma direcao visual com personalidade.</h1>
+          <h1>{theme.headline}</h1>
+          <p className="prompt-description">{theme.description}</p>
           <textarea
             value={prompt}
             onChange={(event) => handlePromptChange(event.target.value)}
@@ -87,14 +90,24 @@ function App() {
           />
 
           <div className="style-row" aria-label="Estilo visual">
-            {styles.map((option) => (
+            {styleOptions.map((option) => (
               <button
                 key={option.id}
                 className={option.id === style ? 'style-chip active' : 'style-chip'}
-                onClick={() => setStyle(option.id)}
+                onClick={() => handleStyleChange(option.id)}
               >
-                {option.label}
+                <span className={`chip-swatch swatch-${option.id}`} />
+                <span>{option.label}</span>
               </button>
+            ))}
+          </div>
+
+          <div className="theme-metrics" aria-label="Resumo do tema">
+            {theme.metrics.map((metric) => (
+              <span key={metric.label}>
+                <strong>{metric.value}</strong>
+                {metric.label}
+              </span>
             ))}
           </div>
 
@@ -107,7 +120,7 @@ function App() {
         <CreatureStage mood={mood} pointer={pointer} style={style} />
       </section>
 
-      <GeneratedPreview blueprint={blueprint} />
+      <GeneratedPreview blueprint={blueprint} theme={theme} visualStyle={style} />
     </main>
   );
 }

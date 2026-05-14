@@ -9,4 +9,7 @@ export type Blueprint = {
   sections: string[];
   components: string[];
   tone: string;
+  visualDirection: string;
+  heroLabel: string;
+  cta: string;
 };

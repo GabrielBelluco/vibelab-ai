@@ -1,4 +1,5 @@
 import type { Blueprint, VisualStyle } from '../types';
+import { themeProfiles } from './themes';
 
 const styleTone: Record<VisualStyle, string> = {
   premium: 'editorial, sofisticado e com contraste alto',
@@ -32,6 +33,7 @@ export function generateBlueprint(prompt: string, style: VisualStyle, iteration 
   const subject = prompt.trim() || fallbackSubject;
   const compactSubject = subject.replace(/\s+/g, ' ').slice(0, 74);
   const variant = iteration % sectionVariants.length;
+  const theme = themeProfiles[style];
 
   return {
     headline: `Transforme ${compactSubject} em uma interface memoravel`,
@@ -41,5 +43,8 @@ export function generateBlueprint(prompt: string, style: VisualStyle, iteration 
     tone: styleTone[style],
     sections: sectionVariants[variant],
     components: componentVariants[variant],
+    visualDirection: theme.description,
+    heroLabel: theme.previewCategory,
+    cta: theme.previewCta,
   };
 }
